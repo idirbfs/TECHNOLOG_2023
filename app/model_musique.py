@@ -8,15 +8,22 @@ class ModelMusique(BaseModel):
 
 # dispose de methodes pour acceder à ces informations et ajouter/retirer des titre aux listes
     
+  # verifier titre
+    @validator("titre")
+    def control_titre(cls, value):
+      
+      if value.len() == 0:
+          raise ValueError("le titre doit contenir qlq chose")
+      return value
     
-    def artist_initials(artiste):
-      parties = artiste.split(" ")
-      initials = ""
-      for partie in parties:
-        initials += partie[0]
-      return initials
-    artist_initials_str = artist_initials(artiste)
-#JH/250/POP/1234
+  # verifier artiste
+    @validator("artiste")
+    #l'artiste ne doit contenir que des lettres
+    def control_artiste(cls, value):
+      if value.len() == 0 or value.isalpha() == False:
+          raise ValueError("l'artiste ne doit contenir que des lettres")
+      return value
+    
   # verifier les initials d'un artist
     @validator("immatriculation")
     def control_initiales_artiste(cls, value):

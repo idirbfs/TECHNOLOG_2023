@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from model_egg import ModelEgg
+from model_magasin import ModelMagasin
 from db import database
 
 app = FastAPI()
@@ -18,3 +18,12 @@ def fetch_magasins():
         }
         res.append(data)
     return res
+
+#post magasin
+@app.post("/magasins")
+def create_magasin(magasin: ModelMagasin):
+    db = database()
+    db.warehouse.insert_one(magasin.dict())
+    return magasin.dict()
+
+
