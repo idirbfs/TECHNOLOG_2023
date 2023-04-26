@@ -17,6 +17,4 @@ class ModelMagasin(BaseModel):
             raise ValueError("Les 4 derniers caractères doivent etre des chiffres.")
         return value
     
-    # verifier que l'annee n'est pas sup a 2022
-
     
