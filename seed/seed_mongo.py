@@ -22,7 +22,7 @@ class MongoSeeder:
         
         
         magasin = {"type_musique": "POP", "vinyle_musique_disponible": {"titre": "titre1", "artiste": "james brown", "immatriculation": "JB/250/POP/1234"}}
-
+        warehouse.append(magasin)
         self.__db.warehouse.insert_many(magasin)
 
         cursor = self.__db.warehouse.find()
